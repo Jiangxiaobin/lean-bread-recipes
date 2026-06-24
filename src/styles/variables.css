@@ -10,16 +10,23 @@
   --color-accent-hover: #a84324;
   --color-accent-light: #fdf0eb;
 
-  /* Category colors */
-  --color-hard-european: #8b5e3c;
-  --color-baguette: #c7972e;
-  --color-ciabatta: #5a8a4a;
-  --color-other: #6b8a9a;
+  /* Category colors — 7 baking categories */
+  --color-lean-bread: #8b5e3c;
+  --color-enriched-bread: #d4a44a;
+  --color-sweet-bread: #e8788a;
+  --color-laminated-pastry: #c7972e;
+  --color-cookies-crackers: #a08060;
+  --color-pies-tarts: #8a5a8a;
+  --color-seasonal: #c7514a;
 
-  /* Hydration colors */
-  --color-hydration-low: #d4a44a;
+  /* Hydration / difficulty colors */
+  --color-hydration-low: #8b9a5a;
   --color-hydration-mid: #c7882e;
   --color-hydration-high: #c7512e;
+  --color-hydration-very-high: #b85042;
+  --color-difficulty-beginner: #5a8a4a;
+  --color-difficulty-intermediate: #c7882e;
+  --color-difficulty-advanced: #c7512e;
 
   /* Spacing */
   --space-xs: 4px;

@@ -9,11 +9,31 @@ interface RecipeCardProps {
 }
 
 function getHydrationLabel(hydration: number): string {
-  if (hydration >= 78) return '超高水量';
+  if (hydration >= 80) return '超高水量';
   if (hydration >= 72) return '高水量';
   if (hydration >= 65) return '中水量';
   return '低水量';
 }
+
+function formatTime(minutes: number): string {
+  if (minutes >= 1440) {
+    const d = Math.floor(minutes / 1440);
+    const h = Math.floor((minutes % 1440) / 60);
+    return h > 0 ? `${d}d ${h}h` : `${d}d`;
+  }
+  if (minutes >= 60) {
+    const h = Math.floor(minutes / 60);
+    const m = minutes % 60;
+    return m > 0 ? `${h}h ${m}m` : `${h}h`;
+  }
+  return `${minutes}min`;
+}
+
+const difficultyLabels: Record<string, string> = {
+  beginner: '入门',
+  intermediate: '进阶',
+  advanced: '大师',
+};
 
 export function RecipeCard({ recipe, onClick }: RecipeCardProps) {
   const catInfo = getCategoryInfo(recipe.category);
@@ -21,10 +41,16 @@ export function RecipeCard({ recipe, onClick }: RecipeCardProps) {
   return (
     <button className={styles.card} onClick={onClick}>
       <div className={styles.visual}>
-        <span className={styles.emoji}>🍞</span>
+        <span className={styles.emoji}>{catInfo.icon || '🍞'}</span>
         <div className={styles.badges}>
-          <Badge label={getHydrationLabel(recipe.hydration)} color="var(--color-accent)" />
+          {recipe.hydration && (
+            <Badge
+              label={getHydrationLabel(recipe.hydration)}
+              color="var(--color-accent)"
+            />
+          )}
           {recipe.preferment && <Badge label={recipe.preferment.nameZh} />}
+          <Badge label={difficultyLabels[recipe.difficulty]} />
         </div>
       </div>
       <div className={styles.info}>
@@ -34,10 +60,11 @@ export function RecipeCard({ recipe, onClick }: RecipeCardProps) {
           <span className={styles.metaItem} style={{ color: catInfo.color }}>
             {catInfo.nameZh}
           </span>
-          <span className={styles.metaItem}>
-            {recipe.hydration}% 水量
-          </span>
+          <span className={styles.metaItem}>⏱ {formatTime(recipe.totalTime)}</span>
         </div>
+        {recipe.hydration && (
+          <span className={styles.hydration}>{recipe.hydration}% 水量</span>
+        )}
       </div>
     </button>
   );

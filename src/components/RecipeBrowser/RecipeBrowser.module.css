@@ -4,6 +4,74 @@
   padding: var(--space-lg);
 }
 
+/* ── Hero Bar ──────────────────────────────── */
+.heroBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-lg);
+  padding: var(--space-md) var(--space-lg);
+  background: linear-gradient(135deg, #fef5ec, #fdf0e5);
+  border-radius: var(--radius-lg);
+  border: 1px solid #f0dcc8;
+  gap: var(--space-md);
+}
+
+.heroLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.browseTitle {
+  font-family: Georgia, serif;
+  font-size: 1.3rem;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.browseSub {
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  font-style: italic;
+  margin: 0;
+}
+
+.slotButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: var(--space-sm) var(--space-lg);
+  background: linear-gradient(135deg, #c7512e, #d4653d);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  box-shadow: 0 3px 12px rgba(199, 81, 46, 0.3);
+  flex-shrink: 0;
+  font-family: var(--font-sans);
+}
+
+.slotButton:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 18px rgba(199, 81, 46, 0.4);
+}
+
+.slotButton:active {
+  transform: scale(0.96);
+}
+
+.slotIcon {
+  font-size: 1.4rem;
+}
+
+.slotLabel {
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
 .filterBar {
   display: flex;
   align-items: center;

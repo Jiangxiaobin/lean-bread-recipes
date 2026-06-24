@@ -10,10 +10,13 @@ interface CategoryFilterProps {
 
 const labelMap: Record<RecipeCategory | 'all', string> = {
   all: '全部',
-  [RecipeCategory.HARD_EUROPEAN]: '硬欧',
-  [RecipeCategory.BAGUETTE]: '法棍',
-  [RecipeCategory.CIABATTA]: '恰巴塔',
-  [RecipeCategory.OTHER]: '其他',
+  [RecipeCategory.LEAN_BREAD]: '瘦面包',
+  [RecipeCategory.ENRICHED_BREAD]: '软面包',
+  [RecipeCategory.SWEET_BREAD]: '甜面包',
+  [RecipeCategory.LAMINATED_PASTRY]: '酥皮',
+  [RecipeCategory.COOKIES_CRACKERS]: '饼干',
+  [RecipeCategory.PIES_TARTS]: '派与挞',
+  [RecipeCategory.SEASONAL]: '节日限定',
 };
 
 export function CategoryFilter({ active, onChange }: CategoryFilterProps) {
@@ -29,12 +32,14 @@ export function CategoryFilter({ active, onChange }: CategoryFilterProps) {
         <button
           key={cat.id}
           className={clsx(styles.pill, active === cat.id && styles.active)}
-          style={{
-            '--cat-color': cat.color,
-          } as React.CSSProperties}
+          style={
+            {
+              '--cat-color': cat.color,
+            } as React.CSSProperties
+          }
           onClick={() => onChange(cat.id)}
         >
-          {labelMap[cat.id]}
+          {cat.icon} {labelMap[cat.id]}
         </button>
       ))}
     </div>

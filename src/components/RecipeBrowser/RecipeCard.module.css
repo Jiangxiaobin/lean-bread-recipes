@@ -67,3 +67,10 @@
   font-weight: 500;
   color: var(--color-text-secondary);
 }
+
+.hydration {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  margin-top: 2px;
+}

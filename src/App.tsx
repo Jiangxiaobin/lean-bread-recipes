@@ -4,24 +4,45 @@ import { recipes } from './data/recipes';
 import { Header } from './components/Header/Header';
 import { RecipeBrowser } from './components/RecipeBrowser/RecipeBrowser';
 import { RecipeDetail } from './components/RecipeDetail/RecipeDetail';
+import { SlotMachine } from './components/SlotMachine/SlotMachine';
 import styles from './App.module.css';
 
+type AppView =
+  | { mode: 'browse' }
+  | { mode: 'detail'; recipe: Recipe }
+  | { mode: 'slotMachine' };
+
 function App() {
-  const [selectedRecipe, setSelectedRecipe] = useState<Recipe | null>(null);
+  const [view, setView] = useState<AppView>({ mode: 'browse' });
+
+  const handleSelectRecipe = (recipe: Recipe) =>
+    setView({ mode: 'detail', recipe });
+
+  const handleOpenSlotMachine = () => setView({ mode: 'slotMachine' });
+
+  const handleBackToBrowse = () => setView({ mode: 'browse' });
+
+  const showBack = view.mode !== 'browse';
 
   return (
     <div className={styles.app}>
-      <Header
-        showBack={!!selectedRecipe}
-        onBack={() => setSelectedRecipe(null)}
-      />
+      <Header showBack={showBack} onBack={handleBackToBrowse} />
       <main className={styles.main}>
-        {selectedRecipe ? (
-          <RecipeDetail recipe={selectedRecipe} />
-        ) : (
+        {view.mode === 'browse' && (
           <RecipeBrowser
             recipes={recipes}
-            onSelectRecipe={setSelectedRecipe}
+            onSelectRecipe={handleSelectRecipe}
+            onOpenSlotMachine={handleOpenSlotMachine}
+          />
+        )}
+        {view.mode === 'detail' && (
+          <RecipeDetail recipe={view.recipe} />
+        )}
+        {view.mode === 'slotMachine' && (
+          <SlotMachine
+            recipes={recipes}
+            onClose={handleBackToBrowse}
+            onSelectRecipe={handleSelectRecipe}
           />
         )}
       </main>

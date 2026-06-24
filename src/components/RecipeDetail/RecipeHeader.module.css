@@ -34,6 +34,14 @@
   flex-wrap: wrap;
 }
 
+.enrichedBar {
+  display: flex;
+  gap: var(--space-md);
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  flex-wrap: wrap;
+}
+
 .description {
   font-size: 0.9rem;
   color: var(--color-text-secondary);

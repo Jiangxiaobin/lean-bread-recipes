@@ -1,4 +1,5 @@
 import type { Recipe } from '../../types/recipe';
+import { BakerSystem } from '../../types/recipe';
 import { useIngredientAdjustment } from '../../hooks/useIngredientAdjustment';
 import { IngredientRow } from './IngredientRow';
 import styles from './AdjustmentPanel.module.css';
@@ -7,9 +8,22 @@ interface AdjustmentPanelProps {
   recipe: Recipe;
 }
 
+function getHint(bakerSystem: string): string {
+  switch (bakerSystem) {
+    case BakerSystem.DIRECT_WEIGHT:
+      return '各食材独立称量，修改某项不会影响其他食材';
+    case BakerSystem.BUTTER_ANCHOR:
+      return '以黄油为锚定，修改任意食材重量后其他食材按比例重新计算';
+    case BakerSystem.DUAL_ANCHOR:
+      return '修改基础面团食材按比例联动；酥皮黄油层独立计算';
+    default:
+      return '修改任意食材重量，其他食材会自动按烘焙百分比重新计算';
+  }
+}
+
 export function AdjustmentPanel({ recipe }: AdjustmentPanelProps) {
   const {
-    currentFlourWeight,
+    currentAnchorWeight,
     currentWeights,
     totalDoughWeight,
     lastAdjustedIngredientId,
@@ -30,9 +44,7 @@ export function AdjustmentPanel({ recipe }: AdjustmentPanelProps) {
         )}
       </div>
 
-      <p className={styles.hint}>
-        修改任意食材重量，其他食材会自动按烘焙百分比重新计算
-      </p>
+      <p className={styles.hint}>{getHint(recipe.bakerSystem)}</p>
 
       <div className={styles.table}>
         <div className={styles.tableHeader}>
@@ -55,23 +67,24 @@ export function AdjustmentPanel({ recipe }: AdjustmentPanelProps) {
 
       <div className={styles.summary}>
         <div className={styles.summaryItem}>
-          <span className={styles.summaryLabel}>总面粉</span>
+          <span className={styles.summaryLabel}>{recipe.anchorLabelZh}</span>
           <span className={styles.summaryValue}>
-            {currentFlourWeight} <span className={styles.summaryUnit}>g</span>
+            {currentAnchorWeight}{' '}
+            <span className={styles.summaryUnit}>g</span>
           </span>
         </div>
         <div className={styles.summaryItem}>
-          <span className={styles.summaryLabel}>总面团</span>
+          <span className={styles.summaryLabel}>总重量</span>
           <span className={styles.summaryValue}>
             {totalDoughWeight} <span className={styles.summaryUnit}>g</span>
           </span>
         </div>
-        <div className={styles.summaryItem}>
-          <span className={styles.summaryLabel}>含水量</span>
-          <span className={styles.summaryValue}>
-            {recipe.hydration}%
-          </span>
-        </div>
+        {recipe.hydration !== undefined && (
+          <div className={styles.summaryItem}>
+            <span className={styles.summaryLabel}>含水量</span>
+            <span className={styles.summaryValue}>{recipe.hydration}%</span>
+          </div>
+        )}
       </div>
     </section>
   );

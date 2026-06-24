@@ -8,8 +8,12 @@ import {
 
 export function useIngredientAdjustment(recipe: Recipe) {
   const [state, setState] = useState(() => ({
-    currentFlourWeight: recipe.defaultFlourWeight,
-    currentWeights: calcAllWeights(recipe.ingredients, recipe.defaultFlourWeight),
+    currentAnchorWeight: recipe.defaultAnchorWeight,
+    currentWeights: calcAllWeights(
+      recipe.ingredients,
+      recipe.defaultAnchorWeight,
+      recipe.bakerSystem
+    ),
     lastAdjustedIngredientId: null as string | null,
   }));
 
@@ -26,8 +30,12 @@ export function useIngredientAdjustment(recipe: Recipe) {
 
   const handleReset = useCallback(() => {
     setState({
-      currentFlourWeight: recipe.defaultFlourWeight,
-      currentWeights: calcAllWeights(recipe.ingredients, recipe.defaultFlourWeight),
+      currentAnchorWeight: recipe.defaultAnchorWeight,
+      currentWeights: calcAllWeights(
+        recipe.ingredients,
+        recipe.defaultAnchorWeight,
+        recipe.bakerSystem
+      ),
       lastAdjustedIngredientId: null,
     });
   }, [recipe]);
@@ -38,7 +46,9 @@ export function useIngredientAdjustment(recipe: Recipe) {
   );
 
   return {
-    ...state,
+    currentAnchorWeight: state.currentAnchorWeight,
+    currentWeights: state.currentWeights,
+    lastAdjustedIngredientId: state.lastAdjustedIngredientId,
     totalDoughWeight,
     handleIngredientChange,
     handleReset,
