@@ -1,0 +1,57 @@
+.panel {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+}
+
+.heading {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-sm);
+  border-bottom: 2px solid var(--color-accent);
+  display: inline-block;
+}
+
+.stepList {
+  display: flex;
+  flex-direction: column;
+}
+
+.tips {
+  margin-top: var(--space-lg);
+  padding: var(--space-md);
+  background: #fcf9f0;
+  border-radius: var(--radius-md);
+  border: 1px solid #efe8d4;
+}
+
+.tipsHeading {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--space-sm);
+}
+
+.tipsList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.tipItem {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  padding-left: var(--space-md);
+  position: relative;
+}
+
+.tipItem::before {
+  content: '•';
+  position: absolute;
+  left: 4px;
+  color: var(--color-accent);
+}

@@ -1,0 +1,50 @@
+:root {
+  /* Colors */
+  --color-bg: #faf8f5;
+  --color-surface: #ffffff;
+  --color-text: #2c2416;
+  --color-text-secondary: #6b5e4a;
+  --color-text-muted: #9b8e7a;
+  --color-border: #e8e0d5;
+  --color-accent: #c7512e;
+  --color-accent-hover: #a84324;
+  --color-accent-light: #fdf0eb;
+
+  /* Category colors */
+  --color-hard-european: #8b5e3c;
+  --color-baguette: #c7972e;
+  --color-ciabatta: #5a8a4a;
+  --color-other: #6b8a9a;
+
+  /* Hydration colors */
+  --color-hydration-low: #d4a44a;
+  --color-hydration-mid: #c7882e;
+  --color-hydration-high: #c7512e;
+
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+
+  /* Typography */
+  --font-sans: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+
+  /* Sizing */
+  --max-width: 720px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(44, 36, 22, 0.06);
+  --shadow-md: 0 4px 12px rgba(44, 36, 22, 0.08);
+  --shadow-lg: 0 8px 24px rgba(44, 36, 22, 0.12);
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+}

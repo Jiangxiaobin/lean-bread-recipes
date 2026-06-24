@@ -1,0 +1,145 @@
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: 10px var(--space-md);
+  border-radius: var(--radius-sm);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.row:hover {
+  background: var(--color-bg);
+}
+
+.row.isFlour {
+  background: #fdfaf5;
+}
+
+.row.adjusted {
+  background: #fef4ed;
+  border-color: #f5c6a0;
+  box-shadow: 0 0 0 1px rgba(199, 81, 46, 0.1);
+}
+
+.row.flash {
+  animation: weightFlash 0.6s ease;
+}
+
+@keyframes weightFlash {
+  0% { background: #fef0e4; }
+  100% { background: transparent; }
+}
+
+.row.isFlour.flash {
+  animation-name: flourFlash;
+}
+
+@keyframes flourFlash {
+  0% { background: #fef0e4; }
+  100% { background: #fdfaf5; }
+}
+
+.nameCol {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.name {
+  font-size: 0.95rem;
+  color: var(--color-text);
+  white-space: nowrap;
+}
+
+.flourTag {
+  flex-shrink: 0;
+  font-size: 0.65rem;
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: #efe8d4;
+  color: #8b5e3c;
+  font-weight: 600;
+}
+
+.percentage {
+  flex-shrink: 0;
+  width: 44px;
+  text-align: right;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+}
+
+.inputCol {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.input {
+  width: 72px;
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 4px 8px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-text);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  -moz-appearance: textfield;
+}
+
+.input::-webkit-inner-spin-button,
+.input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(199, 81, 46, 0.1);
+}
+
+.unit {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.displayWeight {
+  flex-shrink: 0;
+  width: 48px;
+  text-align: right;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+}
+
+@media (max-width: 480px) {
+  .row {
+    padding: 8px var(--space-sm);
+    gap: var(--space-sm);
+  }
+
+  .input {
+    width: 60px;
+    font-size: 0.85rem;
+  }
+
+  .displayWeight {
+    display: none;
+  }
+
+  .percentage {
+    width: 36px;
+    font-size: 0.8rem;
+  }
+}

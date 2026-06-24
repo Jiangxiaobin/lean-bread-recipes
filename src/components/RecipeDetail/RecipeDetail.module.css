@@ -1,0 +1,14 @@
+.detail {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+@media (max-width: 480px) {
+  .detail {
+    padding: var(--space-md);
+  }
+}
